@@ -30,6 +30,5 @@ public class ListDemoAdapter extends SimpleAdapter {
         super(context, data, resource, from, to);
         this.data = data;
         this.context = context;
-
     }
 }
