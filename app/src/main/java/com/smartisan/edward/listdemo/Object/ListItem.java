@@ -4,6 +4,13 @@ package com.smartisan.edward.listdemo.Object;
  * Created by smartisan on 15-12-17.
  */
 public class ListItem {
+
+    public ListItem(int id,String title,String author,String subject){
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.subject = subject;
+    }
     public int getId() {
         return id;
     }
