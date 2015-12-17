@@ -4,13 +4,10 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -32,37 +29,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
         setActionBar();
-
-        initView();
-
-    }
-
-    private void initView(){
         mListView = (ListView)findViewById(R.id.listview);
-        mAdapter = new SimpleAdapter(this,queryListItem(),R.layout.list_item,
-                new String[]{"title","subject"},
-                new int[]{R.id.list_item_title,R.id.list_item_subject});
+        mAdapter = new SimpleAdapter(this,queryListItem(),R.layout.list_item,new String[]{"title","subject"},new int[]{R.id.list_item_title,R.id.list_item_subject});
         mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getApplicationContext(),DetailActivity.class);
-//                Bundle bundle = new Bundle();
-            }
-        });
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
 
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findView//Id(R.id.fab);
+//        fab.setOnClickListener(new View.OnCl//kListener() {
+//      //    @Override
+//            public void onCli//(//ew view) {
+//
+//            }
+//        });
     }
+
     private void setActionBar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -111,5 +93,4 @@ public class MainActivity extends AppCompatActivity {
         cursor.close();
         return listitems;
     }
-
 }
