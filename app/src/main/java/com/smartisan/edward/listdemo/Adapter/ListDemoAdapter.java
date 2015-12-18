@@ -1,7 +1,13 @@
 package com.smartisan.edward.listdemo.Adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+
+import com.smartisan.edward.listdemo.R;
 
 import java.util.List;
 import java.util.Map;
@@ -10,8 +16,9 @@ import java.util.Map;
  * Created by smartisan on 15-12-17.
  */
 public class ListDemoAdapter extends SimpleAdapter {
-    private List<Map<String ,String>> data;
-    private Context context;
+    private List<Map<String ,String>> mData;
+    private Context mContext;
+    private LayoutInflater mLayoutInflater;
     /**
      * Constructor
      *
@@ -28,7 +35,34 @@ public class ListDemoAdapter extends SimpleAdapter {
      */
     public ListDemoAdapter(Context context, List<Map<String,String>> data, int resource, String[] from, int[] to) {
         super(context, data, resource, from, to);
-        this.data = data;
-        this.context = context;
+        this.mData = data;
+        this.mContext = context;
+        this.mLayoutInflater = LayoutInflater.from(context);
+    }
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        ViewHolder viewHolder = null;
+        //optimize adapter
+        if(convertView == null){
+            viewHolder = new ViewHolder();
+            convertView = mLayoutInflater.inflate(R.layout.list_item,null);
+            viewHolder.titleTextView = (TextView)convertView.findViewById(R.id.list_item_title);
+            viewHolder.subjectTextView = (TextView)convertView.findViewById(R.id.list_item_subject);
+
+            convertView.setTag(viewHolder);
+        }else {
+            viewHolder = (ViewHolder)convertView.getTag();
+        }
+
+        viewHolder.titleTextView.setText(mData.get(position).get("title"));
+        viewHolder.subjectTextView.setText(mData.get(position).get("subject"));
+
+        return convertView;
+    }
+    public static final class ViewHolder{
+        public TextView titleTextView;
+        public TextView subjectTextView;
+
     }
 }
