@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.smartisan.edward.listdemo.R;
@@ -19,6 +20,8 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         setContentView(R.layout.activity_detail);
 
@@ -38,6 +41,7 @@ public class DetailActivity extends AppCompatActivity {
         final Bundle bundle = this.getIntent().getExtras();
         detailTitle.setText(bundle.getString("title"));
         detailSubject.setText(bundle.getString("subject"));
+
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
